@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Web Navigation Assistant</title>
+  <style>
+    body {
+      width: 350px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    button {
+      padding: 8px 16px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    button:hover {
+      background-color: #3367D6;
+    }
+    
+    .api-key-container {
+      margin-top: 15px;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-top: 5px;
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    .instructions {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.4;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    #status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    
+    .tab {
+      padding: 8px 16px;
+      cursor: pointer;
+      background-color: #f1f1f1;
+      border-radius: 4px 4px 0 0;
+      margin-right: 5px;
+    }
+    
+    .tab.active {
+      background-color: #4285F4;
+      color: white;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Web Navigation Assistant</h2>
+    
+    <div class="api-key-container">
+      <label for="apiKey">OpenAI API Key:</label>
+      <input type="password" id="apiKey" placeholder="Enter your OpenAI API key">
+      <button id="saveApiKey">Save Key</button>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="navigation">Navigation</div>
+      <div class="tab" data-tab="qa">General Q&A</div>
+    </div>
+    
+    <div id="navigationTab" class="tab-content active">
+      <label for="userPrompt">What would you like help with?</label>
+      <textarea id="userPrompt" placeholder="Example: Show me how to log in to this site, Help me complete this form, etc."></textarea>
+      <button id="analyzeBtn">Analyze Current Page</button>
+    </div>
+    
+    <div id="qaTab" class="tab-content">
+      <label for="userQuestion">Ask a question about this page:</label>
+      <textarea id="userQuestion" placeholder="Example: What is this website about? What features does this product have?"></textarea>
+      <button id="askQuestionBtn">Get Answer</button>
+    </div>
+    
+    <div id="status"></div>
+    
+    <div class="instructions" id="instructions">
+      Instructions will appear here after analysis.
+    </div>
+  </div>
+  
+  <script src="dist/popup.js"></script>
+</body>
+</html> 
